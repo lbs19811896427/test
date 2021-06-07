@@ -1,0 +1,45 @@
+public class LogParserUDF extends UDF {
+    public String evaluate(String log) throws ParseException {
+        // 验证输入参数的合法性
+        if (StringUtils.isEmpty(log)) {
+            return null;
+        }
+		//1.定义变量
+		int a = 0;
+		String domain = "";
+		//2.从日志中取出域名字段
+		try{
+			domain = getUrl(log);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		//3.判断数据是否一致
+		if(domain = "https://domain1.com"){
+			a++;
+		}
+		//4.输出a值
+		System.out.println("有"+a+"个请求以https://domain1.com为域名")
+		
+		
+		
+		
+    // 1. 定义一个正则表达式和变量，来描述整体的数据
+		int b = 0；
+		int c = 0;
+        String regex = "^([0-9.]+\\d+) - - \\[(.+ \\+\\d+)\\] .+(GET) (.+) (HTTP)\\S+ (\\d+).+\\\"+(\\w+).+(\\w+).+([0-9]+(.[0-9]{2})?)$";
+
+    // 3. 使用正则与指定的输入数据进行匹配
+    Matcher matcher = Pattern.compile(regex).matcher(log);
+
+  
+		//判断日期进行计算
+		if (matcher.group(2)==date) {
+            b++;
+			if(matcher.group(6)==200){
+				c++;
+			}
+		}
+	System.out.println(c/b)
+		
+	}
+}
