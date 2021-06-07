@@ -1,0 +1,8 @@
+select count(1)
+from(
+select user_id,count(1) cnt
+from event_log
+where from_unixtime(event_timestamp,'yyyyMM')='202009'
+group by user_id
+) t
+where cnt>=1000 and cnt<2000
